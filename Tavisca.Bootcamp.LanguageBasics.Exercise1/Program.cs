@@ -12,6 +12,7 @@ namespace Tavisca.Bootcamp.LanguageBasics.Exercise1
             Test("42*?47=1974", -1);
             Test("2*12?=247", -1);
             Console.ReadKey(true);
+            
         }
 
         private static void Test(string args, int expected)
@@ -23,16 +24,16 @@ namespace Tavisca.Bootcamp.LanguageBasics.Exercise1
 
         public static int FindDigit(string equation)
         {
-            string[] hlfs= new string[2];
+            string[] halfs= new string[2];
             string[] nums = new string[3];
-            string q="";
+            string quest="";
             int ans =0, flag=0;
             string sans ="";
 
-            hlfs = equation.Split("=");         //breaking the equation into lhs and rhs
-            nums[0] = hlfs[0].Split('*')[0];    // breaking the LHS into 2 nums, and Rhs into third number
-            nums[1] = hlfs[0].Split('*')[1];
-            nums[2] = hlfs[1];
+            halfs = equation.Split('=');         //breaking the equation into lhs and rhs
+            nums[0] = halfs[0].Split('*')[0];    // breaking the LHS into 2 nums, and Rhs into third number
+            nums[1] = halfs[0].Split('*')[1];
+            nums[2] = halfs[1];
             
             // Checking which part has the "?" mark
 
@@ -41,7 +42,7 @@ namespace Tavisca.Bootcamp.LanguageBasics.Exercise1
                 if(Convert.ToInt32(nums[2])%Convert.ToInt32(nums[1])==0)
                 {
                     ans = Convert.ToInt32(nums[2])/Convert.ToInt32(nums[1]);
-                    q=nums[0];
+                    quest=nums[0];
                 }
                 else
                     flag=1;
@@ -53,7 +54,7 @@ namespace Tavisca.Bootcamp.LanguageBasics.Exercise1
                 if(Convert.ToInt32(nums[2])%Convert.ToInt32(nums[0])==0)
                 {
                     ans = Convert.ToInt32(nums[2])/Convert.ToInt32(nums[0]);
-                    q=nums[1];
+                    quest=nums[1];
                 }
                 else
                     flag=1;
@@ -62,7 +63,7 @@ namespace Tavisca.Bootcamp.LanguageBasics.Exercise1
             else if(nums[2].IndexOf('?')!=-1)
             {
                  ans = Convert.ToInt32(nums[0]) * Convert.ToInt32(nums[1]);
-                 q= nums[2];
+                 quest= nums[2];
             }
 
 
@@ -70,13 +71,13 @@ namespace Tavisca.Bootcamp.LanguageBasics.Exercise1
             if(flag==0)
             {
                 sans = ans.ToString();
-                if(sans.Length==q.Length)
+                if(sans.Length==quest.Length)
                 {
                     for(int i=0; i<sans.Length;i++)
                     {
-                        if(q[i]!='?')
+                        if(quest[i]!='?')
                         {
-                            if(q[i]!=sans[i])
+                            if(quest[i]!=sans[i])
                             {
                                 flag=1;
                             }
@@ -91,7 +92,7 @@ namespace Tavisca.Bootcamp.LanguageBasics.Exercise1
 
             else
             {
-                int fan = sans[q.IndexOf('?')]-'0';
+                int fan = sans[quest.IndexOf('?')]-'0';
                 return(fan);
             }
                  
